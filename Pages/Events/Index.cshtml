@@ -1,0 +1,116 @@
+﻿@page
+@model EventsApp.Pages.Events.IndexModel
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<h1>All Events</h1>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+
+<form>
+    <p>
+        <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Search in Title (Arabic or English)" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Title)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].Description)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].ArabicTitle)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].ArabicDescription)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].ArabicLocation)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].CoordLongitude)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event[0].CoordLatitude)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].ImagePath)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Event)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArabicTitle)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ArabicDescription)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArabicLocation)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CoordLongitude)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CoordLatitude)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @if (item.Status == 1)
+                    {
+                        @:Active
+                    }
+                    else
+                    {
+                        @:Not Active
+                    }
+
+                    @*@Html.DisplayFor(modelItem => item.Status)*@
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> |
+                    <a asp-page="./ActDeAct" asp-route-id="@item.Id">Avtivate-DeActivate</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

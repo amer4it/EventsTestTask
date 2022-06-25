@@ -1,0 +1,10 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "User View";
+}
+<h1>@ViewData["Title"]</h1>
+
+@*<p>Use this page to detail your site's privacy policy.</p>*@
+<label>language used : </label>
+<select asp-for="lang" asp-items="Model.langs" onchange="window.location ='/events'"></select>

@@ -1,0 +1,86 @@
+﻿@page
+@model EventsApp.Pages.Events.UserEventsModel
+@{
+    ViewData["Title"] = "User Events";
+
+}
+
+<label>language used/اللغة المستخدمة : </label>
+<select asp-for="lang" asp-items="Model.langs" onchange="if(this.value == 'AR') window.location ='/events/usereventsarabic'"></select>
+
+<h1>All Events</h1>
+
+<form>
+    <p>
+        <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Search in Title" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Title)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].Description)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Location)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].ArabicTitle)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].ArabicDescription)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].ArabicLocation)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].CoordLongitude)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event[0].CoordLatitude)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].ImagePath)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Image)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Event[0].Status)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Event)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td class="col-sm-10">
+                    <a href="/Events/UserDetails?id=@item.Id"><img src="/@Html.DisplayFor(modelItem => item.ImagePath)" height="100" width="200" /></a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
